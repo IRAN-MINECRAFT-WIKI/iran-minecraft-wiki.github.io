@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>در حال انتقال... | MineBed</title>
+<meta name="robots" content="noindex, follow">
+<!-- Smart redirect: GitHub Pages serves this 404.html when a visitor hits an old
+     root-level URL like /blog/foo (without /website/ prefix). We transparently
+     rewrite the URL to /website/blog/foo so the user lands on the real page. -->
+<script>
+(function () {
+  var p = window.location.pathname;
+  var q = window.location.search || '';
+  var h = window.location.hash || '';
+
+  // Skip the redirect page itself and the /website/ subtree (already correct).
+  if (p === '/' || p === '/index.html' || p === '/404.html') {
+    window.location.replace('/website/' + q + h);
+    return;
+  }
+
+  // If path doesn't already start with /website/, prepend it.
+  if (p.indexOf('/website/') !== 0 && p !== '/website') {
+    var newPath = '/website' + (p.charAt(0) === '/' ? p : '/' + p);
+    window.location.replace(newPath + q + h);
+    return;
+  }
+
+  // Already on /website/* — go to homepage.
+  window.location.replace('/website/' + q + h);
+})();
+</script>
+<noscript>
+  <meta http-equiv="refresh" content="0; url=/website/">
+  <style>
+    body { background: radial-gradient(ellipse at 50% 0%, #17331b 0%, #0d0d18 70%); color: #e6e6f2; font-family: 'Vazirmatn', system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; padding: 20px; }
+    .box { max-width: 420px; padding: 40px 30px; background: rgba(28,28,52,0.85); border: 3px solid #2e2e4a; }
+    a { display: inline-block; margin-top: 22px; padding: 12px 24px; background: #5fa838; color: #fff; text-decoration: none; font-weight: 700; }
+  </style>
+</noscript>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Vazirmatn', system-ui, sans-serif;
+    background: radial-gradient(ellipse at 50% 0%, #17331b 0%, #0d0d18 70%);
+    color: #e6e6f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+  .box { max-width: 420px; padding: 40px 30px; background: rgba(28,28,52,0.85); border: 3px solid #2e2e4a; }
+  .logo { font-family: 'Press Start 2P', monospace; font-size: 14px; color: #5fa838; letter-spacing: 2px; margin-bottom: 24px; }
+  h1 { font-size: 20px; margin-bottom: 12px; }
+  p { color: #9a9ab8; font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
+  .spinner { display: inline-block; width: 32px; height: 32px; border: 3px solid #2e2e4a; border-top-color: #5fa838; border-radius: 50%; animation: spin 0.9s linear infinite; margin: 16px 0; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  a { display: inline-block; margin-top: 22px; padding: 12px 24px; background: #5fa838; color: #fff; text-decoration: none; font-weight: 700; font-size: 13.5px; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="logo">MINEBED</div>
+    <h1>در حال انتقال...</h1>
+    <p>آدرس صفحه اصلاح شد. چند ثانیه منتظر بمانید تا به محل درست منتقل شوید.</p>
+    <div class="spinner"></div>
+    <p>اگر منتقل نشدید، روی دکمه زیر کلیک کنید:</p>
+    <a href="/website/">ورود به وب‌سایت</a>
+  </div>
+</body>
+</html>

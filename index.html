@@ -3,8 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MineBed | در حال انتقال...</title>
-<meta http-equiv="refresh" content="3; url=/website/">
+<title>MineBed | مرجع فارسی ماینکرفت</title>
+<meta name="robots" content="index, follow">
+<meta name="description" content="مرجع فارسی ماینکرفت بدراک — دانلود ماد، مپ، ریسورس‌پک، سید، آموزش و ویکی.">
+<!-- Smart root redirect: if a user lands on the bare root user-page, send them to
+     /website/ where the actual MineBed Astro site lives. But if they hit a deep
+     path like /blog/foo from an old link, 404.html handles that (this file only
+     handles the bare root and explicit / paths). -->
+<script>
+(function () {
+  var p = window.location.pathname;
+  var q = window.location.search || '';
+  var h = window.location.hash || '';
+
+  // Bare root or explicit /index.html → /website/
+  if (p === '/' || p === '/index.html') {
+    window.location.replace('/website/' + q + h);
+    return;
+  }
+
+  // Anything else → also forward to /website/ + original path (deep-link safe)
+  if (p.indexOf('/website/') !== 0 && p !== '/website') {
+    var newPath = '/website' + (p.charAt(0) === '/' ? p : '/' + p);
+    window.location.replace(newPath + q + h);
+    return;
+  }
+
+  // Already on /website/*, do nothing.
+})();
+</script>
+<noscript>
+  <meta http-equiv="refresh" content="3; url=/website/">
+</noscript>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -37,26 +67,10 @@
     letter-spacing: 2px;
     margin-bottom: 24px;
   }
-  .icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-    display: block;
-    animation: bounce 1s infinite;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  h1 {
-    font-size: 20px;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-  p {
-    color: #9a9ab8;
-    margin-bottom: 20px;
-    font-size: 14px;
-  }
+  .icon { font-size: 48px; margin-bottom: 16px; display: block; animation: bounce 1s infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  h1 { font-size: 20px; color: #fff; margin-bottom: 12px; }
+  p { color: #9a9ab8; margin-bottom: 20px; font-size: 14px; line-height: 1.7; }
   .countdown {
     font-family: 'Press Start 2P', monospace;
     font-size: 36px;
@@ -65,24 +79,9 @@
     margin: 20px 0;
     display: block;
   }
-  .bar {
-    width: 100%;
-    height: 8px;
-    background: #14142a;
-    border: 2px solid #2e2e4a;
-    overflow: hidden;
-    margin-top: 16px;
-  }
-  .bar-fill {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, #3d7521, #7cc84a);
-    animation: fillBar 3s linear forwards;
-  }
-  @keyframes fillBar {
-    0% { width: 0; }
-    100% { width: 100%; }
-  }
+  .bar { width: 100%; height: 8px; background: #14142a; border: 2px solid #2e2e4a; overflow: hidden; margin-top: 16px; }
+  .bar-fill { height: 100%; width: 0; background: linear-gradient(90deg, #3d7521, #7cc84a); animation: fillBar 3s linear forwards; }
+  @keyframes fillBar { 0% { width: 0; } 100% { width: 100%; } }
   a {
     display: inline-block;
     margin-top: 22px;
@@ -98,58 +97,27 @@
     transition: all 0.1s;
   }
   a:hover { background: #7cc84a; }
-  a:active { transform: translateY(4px); box-shadow: none; }
-  /* بلوک‌های شناور پس‌زمینه */
-  .blk {
-    position: fixed;
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(180deg, #6db73f 0 30%, #79553a 30% 100%);
-    border: 2px solid #2b1d0e;
-    opacity: 0.15;
-    animation: floatUp linear infinite;
-    z-index: 1;
-  }
-  @keyframes floatUp {
-    0% { transform: translateY(110vh) rotate(0deg); }
-    100% { transform: translateY(-20vh) rotate(360deg); }
-  }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<!-- بلوک‌های شناور -->
-<div class="blk" style="left:10%; animation-duration:12s;"></div>
-<div class="blk" style="left:25%; animation-duration:15s; animation-delay:2s;"></div>
-<div class="blk" style="left:50%; animation-duration:10s; animation-delay:1s;"></div>
-<div class="blk" style="left:70%; animation-duration:14s; animation-delay:3s;"></div>
-<div class="blk" style="left:85%; animation-duration:11s; animation-delay:0.5s;"></div>
-<div class="blk" style="left:40%; animation-duration:13s; animation-delay:4s;"></div>
-
-<div class="box">
-  <div class="logo">MINEBED</div>
-  <span class="icon">⛏️</span>
-  <h1>در حال انتقال به سایت...</h1>
-  <p>لطفاً چند لحظه صبر کن</p>
-  <span class="countdown" id="countdown">3</span>
-  <div class="bar"><div class="bar-fill"></div></div>
-  <a href="/website/">اگه خودکار منتقل نشدی، اینجا کلیک کن</a>
-</div>
-
-<script>
-  let count = 3;
-  const cd = document.getElementById('countdown');
-  const timer = setInterval(() => {
-    count--;
-    if (count > 0) {
-      cd.textContent = count;
-    } else {
-      clearInterval(timer);
-      cd.textContent = '✓';
-    }
-  }, 1000);
-</script>
-
+  <div class="box">
+    <div class="logo">MINEBED</div>
+    <span class="icon">⛏️</span>
+    <h1>در حال انتقال به وب‌سایت...</h1>
+    <p>صفحه‌ای که دنبالش بودید به آدرس جدید منتقل شده. اگه به‌صورت خودکار منتقل نشدید، روی دکمه زیر بزنید:</p>
+    <span class="countdown" id="countdown">3</span>
+    <div class="bar"><div class="bar-fill"></div></div>
+    <a href="/website/">ورود به وب‌سایت</a>
+  </div>
+  <script>
+    // Countdown display (3-2-1) for visual feedback
+    var cd = document.getElementById('countdown');
+    var n = 3;
+    var t = setInterval(function () {
+      n--;
+      if (cd) cd.textContent = n > 0 ? n : '0';
+      if (n <= 0) { clearInterval(t); }
+    }, 1000);
+  </script>
 </body>
 </html>
