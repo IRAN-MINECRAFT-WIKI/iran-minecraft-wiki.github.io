@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap (the actual site is under /website/ — GitHub project page)
+Sitemap: https://iran-minecraft-wiki.github.io/website/sitemap.xml
